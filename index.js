@@ -12,15 +12,16 @@ const libDir = path.join(__dirname, './data/');
 console.log(libDir);
 
 app.get('/', (req, res) => {
-    const random_number = Math.floor(Math.random() * 21);
     fs.readFile(`${libDir}/data.json`, 'utf-8', (err, data) => {
         let text = JSON.parse(data);
+        const random_number = Math.ceil(Math.random() * text.result.length);
         let response = text.result[random_number];
-        console.log(random_number,':',response);
+        //console.log(text.result.length);
+        console.log(random_number, ':', response);
         res.status(200)
             .json(response)
 
-        console.log('hello');
+        //console.log('hello');
     })
 
 });
